@@ -1,4 +1,4 @@
-const collectText = (el, acc = []) => {
+const collectText = (el: { map: (arg0: (item: any) => string) => void; props: { children: any } }, acc = []) => {
   if (el) {
     if (typeof el === 'string') acc.push(el)
     if (Array.isArray(el)) el.map((item) => collectText(item, acc))

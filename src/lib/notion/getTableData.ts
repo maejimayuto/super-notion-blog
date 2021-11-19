@@ -8,7 +8,7 @@ export async function getTableData(collectionBlock: any, isPosts = false) {
 
   const { value } = collectionBlock
   let table: any = {}
-  const col = await queryCollection({
+  const col: any = await queryCollection({
     collectionId: value.collection_id,
     collectionViewId: value.view_ids[0],
   })

@@ -2,6 +2,7 @@ import { renderToString, ParseError } from 'katex'
 
 function render(expression: string, displayMode: boolean): string {
   let result: string
+  result = ''
   try {
     result = renderToString(expression, { displayMode: displayMode })
   } catch (e) {
@@ -15,7 +16,7 @@ function render(expression: string, displayMode: boolean): string {
   return result
 }
 
-const Equation = ({ children, displayMode = true }) => {
+const Equation = ({ children, displayMode = true }: { children: string, displayMode: boolean}) => {
   return (
     <span
       dangerouslySetInnerHTML={{

@@ -1,12 +1,12 @@
 import React from 'react'
 import components from '../../components/dynamic'
 
-function applyTags(tags = [], children, noPTag = false, key) {
-  let child = children
+function applyTags(tags = [], children: never, noPTag = false, key: number) {
+  let child: any = children
 
   for (const tag of tags) {
     const props: { [key: string]: any } = { key }
-    let tagName = tag[0]
+    let tagName: any = tag[0]
 
     if (noPTag && tagName === 'p') tagName = React.Fragment
     if (tagName === 'c') tagName = 'code'
@@ -23,12 +23,13 @@ function applyTags(tags = [], children, noPTag = false, key) {
       child = tag[1]
     }
 
-    child = React.createElement(components[tagName] || tagName, props, child)
+    // TODO: assign type
+    // child = React.createElement(components[tagName] || tagName, props, child)
   }
   return child
 }
 
-export function textBlock(text = [], noPTag = false, mainKey) {
+export function textBlock(text: any = [], noPTag = false, mainKey: string) {
   const children = []
   let key = 0
 
@@ -38,7 +39,8 @@ export function textBlock(text = [], noPTag = false, mainKey) {
       children.push(textItem)
       continue
     }
-    children.push(applyTags(textItem[1], textItem[0], noPTag, key))
+    // TODO: assign type
+    // children.push(applyTags(textItem[1], textItem[0], noPTag, key))
   }
   return React.createElement(
     noPTag ? React.Fragment : components.p,

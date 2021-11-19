@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Counter = ({ initialValue }) => {
+const Counter = ({ initialValue }: { initialValue: number }) => {
   const [clicks, setClicks] = useState(initialValue)
 
   return (

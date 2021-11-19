@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import Header from '../../components/header'
 import Heading from '../../components/heading'
 import components from '../../components/dynamic'
-import ReactJSXParser from '@zeit/react-jsx-parser'
+// import ReactJSXParser from '@zeit/react-jsx-parser'
 import blogStyles from '../../styles/blog.module.css'
 import { textBlock } from '../../lib/notion/renderers'
 import getPageData from '../../lib/notion/getPageData'
@@ -391,17 +391,17 @@ const RenderPost = ({ post, redirect, preview }) => {
 
                 if (language === 'LiveScript') {
                   // this requires the DOM for now
-                  toRender.push(
-                    <ReactJSXParser
-                      key={id}
-                      jsx={content}
-                      components={components}
-                      componentsOnly={false}
-                      renderInpost={false}
-                      allowUnknownElements={true}
-                      blacklistedTags={['script', 'style']}
-                    />
-                  )
+                  // toRender.push(
+                  //   <ReactJSXParser
+                  //     key={id}
+                  //     jsx={content}
+                  //     components={components}
+                  //     componentsOnly={false}
+                  //     renderInpost={false}
+                  //     allowUnknownElements={true}
+                  //     blacklistedTags={['script', 'style']}
+                  //   />
+                  // )
                 } else {
                   toRender.push(
                     <components.Code key={id} language={language || ''}>
