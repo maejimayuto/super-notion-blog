@@ -1,22 +1,26 @@
 import Link from 'next/link'
 import fetch from 'node-fetch'
 import { useRouter } from 'next/router'
+import ReactJSXParser from '@zeit/react-jsx-parser'
+import React, { CSSProperties, useEffect } from 'react'
+
+import CustomeHead from '../../components/custome-head'
 import Header from '../../components/header'
 import Heading from '../../components/heading'
 import components from '../../components/dynamic'
-import ReactJSXParser from '@zeit/react-jsx-parser'
-import blogStyles from '../../styles/blog.module.css'
 import { textBlock } from '../../lib/notion/renderers'
 import getPageData from '../../lib/notion/getPageData'
-import React, { CSSProperties, useEffect } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { getBlogLink, getDateStr } from '../../lib/blog-helpers'
+import blogStyles from '../../styles/blog.module.css'
 
 // Get the data for each blog post
 export async function getStaticProps({ params: { slug }, preview }) {
   // load the postsTable so that we can get the page's ID
   const postsTable = await getBlogIndex()
+  console.log('postsTable:', JSON.stringify(postsTable, null, 2))
   const post = postsTable[slug]
+  console.log('post:', JSON.stringify(post, null, 2))
 
   // if we can't find the post or if it is unpublished and
   // viewed without preview mode then we just redirect to /blog
@@ -135,7 +139,8 @@ const RenderPost = ({ post, redirect, preview }) => {
 
   return (
     <>
-      <Header titlePre={post.Page} />
+      <CustomeHead titlePre={post.Page} />
+      <Header />
       {preview && (
         <div className={blogStyles.previewAlertContainer}>
           <div className={blogStyles.previewAlert}>

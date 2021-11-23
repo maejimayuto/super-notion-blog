@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import CustomeHead from '../../components/custome-head'
 import Header from '../../components/header'
 
 import blogStyles from '../../styles/blog.module.css'
@@ -36,7 +37,8 @@ export async function getStaticProps({ preview }) {
 const Index = ({ posts = [], preview }) => {
   return (
     <>
-      <Header titlePre="Blog" />
+      <CustomeHead titlePre="Home" />
+      <Header />
       {/* TODO: この preview の意味がわからない */}
       {preview && (
         <div>
