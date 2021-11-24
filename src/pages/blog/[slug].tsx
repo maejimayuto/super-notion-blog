@@ -5,6 +5,7 @@ import ReactJSXParser from '@zeit/react-jsx-parser'
 import React, { CSSProperties, useEffect } from 'react'
 
 import components from '../../components/dynamic'
+import CustomHead from '../../components/custom-head'
 import Header from '../../components/header'
 import Heading from '../../components/heading'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
@@ -136,7 +137,8 @@ const RenderPost = ({ post, redirect, preview }) => {
 
   return (
     <>
-      <Header titlePre={post.Page} />
+      <CustomHead titlePre={post.Page} />
+      <Header />
       {preview && (
         <div className={blogStyles.previewAlertContainer}>
           <div className={blogStyles.previewAlert}>
