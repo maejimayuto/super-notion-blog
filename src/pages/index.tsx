@@ -10,6 +10,7 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           前島 悠人
         </h1>
+        <p className="text-blue-600">前島 悠人</p>
       </main>
     </div>
   )
