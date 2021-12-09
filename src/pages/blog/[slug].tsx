@@ -38,6 +38,8 @@ export async function getStaticProps({ params: { slug }, preview }) {
   }
   const postData = await getPageData(post.id)
   post.content = postData.blocks
+  post.PageIcon = postData.PageIcon
+  post.PageCoverUrl = postData.PageCoverUrl
 
   for (let i = 0; i < postData.blocks.length; i++) {
     const { value } = postData.blocks[i]
@@ -155,16 +157,23 @@ const RenderPost = ({ post, redirect, preview }) => {
         </div>
       )}
       <div className="relative my-0 mx-auto max-w-3xl h-72">
-        <Image
-          src="/images/maejima.jpg"
+        {/* <Image
+          // src={`/images/maejima.jpg`}
+          src={`/api/asset?assetUrl=${encodeURIComponent(
+            post.PageCoverUrl as any
+            )}&blockId=${post.id}`}
           layout="fill"
           objectFit='cover'
           alt="ヘッダー画像1"
-        />
+        /> */}
+        <img src={`/api/asset?assetUrl=${encodeURIComponent(
+            post.PageCoverUrl as any
+            )}&blockId=${post.id}`} />
       </div>
       {/* <div className="px-4 pb-8 my-0 mx-auto max-w-3xl"> */}
       <div className={blogStyles.post}>
         <TopicPaths paths={["✍️ Blog", post.Page]} />
+        {post.PageIcon}
         <h1>{post.Page || ''}</h1>
         {post.Date && (
           <div className="posted">Posted: {getDateStr(post.Date)}</div>
