@@ -151,6 +151,7 @@ const RenderPost = ({ post, redirect, preview }) => {
           </div>
         </div>
       )}
+      {/* <div className="px-4 pb-8 my-0 mx-auto max-w-3xl"> */}
       <div className={blogStyles.post}>
         <TopicPaths paths={["✍️ Blog", post.Page]} />
         <h1>{post.Page || ''}</h1>
