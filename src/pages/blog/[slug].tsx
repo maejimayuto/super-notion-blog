@@ -7,6 +7,7 @@ import React, { CSSProperties, useEffect } from 'react'
 import components from '../../components/dynamic'
 import CustomHead from '../../components/custom-head'
 import Header from '../../components/header'
+import TopicPaths from '../../components/topic-path'
 import Heading from '../../components/heading'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import getPageData from '../../lib/notion/getPageData'
@@ -150,31 +151,7 @@ const RenderPost = ({ post, redirect, preview }) => {
           </div>
         </div>
       )}
-      <div className="flex items-center py-1 px-4 h-11 text-sm bg-white">
-        <Link href="/" passHref>
-          <a className="flex items-center py-1 px-1 hover:bg-gray-200 rounded">
-            <div className="ml-1">
-              前島 悠人
-            </div>
-          </a>
-        </Link>
-        <div className="px-1">/</div>
-        <Link href="/blog" passHref>
-          <a className="flex items-center py-1 px-1 hover:bg-gray-200 rounded">
-            <div className="ml-1">
-              ✍️ Blog
-            </div>
-          </a>
-        </Link>
-        <div className="px-1">/</div>
-        <Link href="/" passHref>
-          <a className="flex items-center py-1 px-1 hover:bg-gray-200 rounded">
-            <div className="ml-1">
-              {post.Page}
-            </div>
-          </a>
-        </Link>
-      </div>
+      <TopicPaths paths={["✍️ Blog", post.Page]} />
       <div className={blogStyles.post}>
         <h1>{post.Page || ''}</h1>
         {post.Date && (
