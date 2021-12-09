@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import fetch from 'node-fetch'
@@ -151,6 +152,14 @@ const RenderPost = ({ post, redirect, preview }) => {
           </div>
         </div>
       )}
+      <div className="relative my-0 mx-auto max-w-3xl h-72">
+        <Image
+          src="/images/maejima.jpg"
+          layout="fill"
+          objectFit='cover'
+          alt="ヘッダー画像1"
+        />
+      </div>
       {/* <div className="px-4 pb-8 my-0 mx-auto max-w-3xl"> */}
       <div className={blogStyles.post}>
         <TopicPaths paths={["✍️ Blog", post.Page]} />
