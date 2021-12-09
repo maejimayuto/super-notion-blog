@@ -20,6 +20,8 @@ import blogStyles from '../../styles/blog.module.css'
 export async function getStaticProps({ params: { slug }, preview }) {
   // load the postsTable so that we can get the page's ID
   const postsTable = await getBlogIndex()
+  // TODO: 本当は、 slug (ページのタイトル的なやつ) で API に検索クエリ的に投げられると良い
+  // 現状は、全ての記事を取得し、メモリ上で同じ slug で記事を探し当てている
   const post = postsTable[slug]
 
   // if we can't find the post or if it is unpublished and
