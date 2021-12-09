@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import Link from 'next/link'
 
 import CustomHead from '../components/custom-head'
 import Header from '../components/header'
@@ -10,9 +11,11 @@ const Home: NextPage = () => {
       <Header />
       <main>
         <h1>
-          前島 悠人
+          サイトのタイトル
         </h1>
-        <p className="text-blue-600">前島 悠人</p>
+        <Link href="/blog" passHref>
+          <a className="text-blue-600">blog</a>
+        </Link>
       </main>
     </div>
   )
