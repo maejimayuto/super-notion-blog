@@ -10,7 +10,7 @@ const TopicPath = ({ paths = [] }) => {
           </div>
         </a>
       </Link>
-      <div className="px-1">/</div>
+      <div className="px-1 text-fg-2">/</div>
       <Link href="/blog" passHref>
         <a className="flex items-center py-1 px-1 hover:bg-gray-200 rounded">
           <div className="ml-1">
@@ -20,7 +20,7 @@ const TopicPath = ({ paths = [] }) => {
       </Link>
       {paths.length == 2 && (
         <>
-          <div className="px-1">/</div>
+          <div className="px-1 text-fg-2">/</div>
           <Link href="/" passHref>
             <a className="flex items-center py-1 px-1 hover:bg-gray-200 rounded">
               <div className="ml-1">

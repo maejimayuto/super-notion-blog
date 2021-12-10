@@ -6,7 +6,15 @@ module.exports = {
     fontFamily: {
       body: ['Noto Sans JP', 'Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+      colors: {
+        'fg': 'rgb(55, 53, 47)',
+        'fg-0': 'rgb(55, 53, 47, 0.09)',
+        'fg-1': 'rgb(55, 53, 47, 0.16)',
+        'fg-2': 'rgb(55, 53, 47, 0.4)',
+        'fg-3': 'rgb(55, 53, 47, 0.6)',
+      },
+    },
   },
   variants: {
     extend: {},
