@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 import CustomHead from '../../components/custom-head'
-import Header from '../../components/header'
 import TopicPaths from '../../components/topic-path'
 import blogStyles from '../../styles/blog.module.css'
 
@@ -39,7 +38,6 @@ const Index = ({ posts = [], preview }) => {
   return (
     <>
       <CustomHead titlePre="Home" />
-      <Header />
       {/* TODO: この preview の意味がわからない */}
       {preview && (
         <div>
