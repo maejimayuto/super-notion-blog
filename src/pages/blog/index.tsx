@@ -39,7 +39,6 @@ const Index = ({ posts = [], preview }) => {
   return (
     <>
       <CustomHead titlePre="Home" />
-      <Header />
       {/* TODO: この preview の意味がわからない */}
       {preview && (
         <div>
