@@ -37,6 +37,7 @@ export async function getStaticProps({ params: { slug }, preview }) {
   const postData = await getPageData(post.id)
   post.content = postData.blocks
   post.PageIcon = postData.PageIcon
+  post.PagePath = postData.PageIcon ? post.PageIcon + ' ' + post.Page : post.Page
   post.PageCoverUrl = postData.PageCoverUrl
 
   for (let i = 0; i < postData.blocks.length; i++) {
@@ -141,7 +142,7 @@ const RenderPost = ({ post, redirect, preview }) => {
 
   return (
     <>
-      <CustomHead titlePre={post.Page} />
+      <CustomHead titlePre={post.PagePath} />
       {preview && (
         <div className={blogStyles.previewAlertContainer}>
           <div className={blogStyles.previewAlert}>
