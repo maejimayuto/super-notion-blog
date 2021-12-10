@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import fetch from 'node-fetch'
@@ -7,7 +6,6 @@ import React, { CSSProperties, useEffect } from 'react'
 
 import components from '../../components/dynamic'
 import CustomHead from '../../components/custom-head'
-import Header from '../../components/header'
 import TopicPaths from '../../components/topic-path'
 import Heading from '../../components/heading'
 import getBlogIndex from '../../lib/notion/getBlogIndex'

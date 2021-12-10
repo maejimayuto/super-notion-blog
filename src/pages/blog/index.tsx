@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 import CustomHead from '../../components/custom-head'
-import Header from '../../components/header'
 import TopicPaths from '../../components/topic-path'
 import blogStyles from '../../styles/blog.module.css'
 
