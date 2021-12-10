@@ -157,18 +157,13 @@ const RenderPost = ({ post, redirect, preview }) => {
         </div>
       )}
       <div className="relative my-0 mx-auto max-w-3xl h-72">
-        {/* <Image
-          // src={`/images/maejima.jpg`}
-          src={`/api/asset?assetUrl=${encodeURIComponent(
-            post.PageCoverUrl as any
-            )}&blockId=${post.id}`}
-          layout="fill"
-          objectFit='cover'
-          alt="ヘッダー画像1"
-        /> */}
+        {/* TODO: use nextjs Image tag #54*/}
         <img src={`/api/asset?assetUrl=${encodeURIComponent(
             post.PageCoverUrl as any
-            )}&blockId=${post.id}`} />
+            )}&blockId=${post.id}`}
+            alt="cover image"
+            className="object-cover w-full h-full"
+            />
       </div>
       {/* <div className="px-4 pb-8 my-0 mx-auto max-w-3xl"> */}
       <div className={blogStyles.post}>
