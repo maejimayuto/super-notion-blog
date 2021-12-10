@@ -16,14 +16,16 @@ export default async function getPageData(pageId: string) {
       blocks = Object.assign(blocks, data.recordMap.block)
     }
     const blockArray = values(blocks)
+    const page_icon = blockArray[0].value.format.page_icon
+    const page_cover = getCoverUrl(blockArray[0].value.format.page_cover)
     if (blockArray[0] && blockArray[0].value.content) {
       // remove table blocks
       blockArray.splice(0, 3)
     }
-    return { blocks: blockArray }
+    return { blocks: blockArray, PageIcon: page_icon, PageCoverUrl: page_cover }
   } catch (err) {
     console.error(`Failed to load pageData for ${pageId}`, err)
-    return { blocks: [] }
+    return { blocks: [], PageIcon: '', PageCoverUrl: '' }
   }
 }
 
@@ -41,4 +43,15 @@ export function loadPageChunk({
     chunkNumber,
     verticalColumns,
   })
+}
+
+
+export function getCoverUrl(coverUrl: string) {
+  if (!coverUrl.indexOf('/images')) {
+    return "https://www.notion.so/image/https%3A%2F%2Fwww.notion.so" + encodeURIComponent(coverUrl)
+  } else if (!coverUrl.indexOf('http')) {
+    return coverUrl
+  } else {
+    return ''
+  }
 }

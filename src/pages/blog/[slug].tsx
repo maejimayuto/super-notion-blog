@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import fetch from 'node-fetch'
@@ -19,6 +20,8 @@ import blogStyles from '../../styles/blog.module.css'
 export async function getStaticProps({ params: { slug }, preview }) {
   // load the postsTable so that we can get the page's ID
   const postsTable = await getBlogIndex()
+  // TODO: 本当は、 slug (ページのタイトル的なやつ) で API に検索クエリ的に投げられると良い
+  // 現状は、全ての記事を取得し、メモリ上で同じ slug で記事を探し当てている
   const post = postsTable[slug]
 
   // if we can't find the post or if it is unpublished and
@@ -35,6 +38,8 @@ export async function getStaticProps({ params: { slug }, preview }) {
   }
   const postData = await getPageData(post.id)
   post.content = postData.blocks
+  post.PageIcon = postData.PageIcon
+  post.PageCoverUrl = postData.PageCoverUrl
 
   for (let i = 0; i < postData.blocks.length; i++) {
     const { value } = postData.blocks[i]
@@ -151,8 +156,19 @@ const RenderPost = ({ post, redirect, preview }) => {
           </div>
         </div>
       )}
-      <TopicPaths paths={["✍️ Blog", post.Page]} />
+      <div className="relative my-0 mx-auto max-w-3xl h-72">
+        {/* TODO: use nextjs Image tag #54*/}
+        <img src={`/api/asset?assetUrl=${encodeURIComponent(
+            post.PageCoverUrl as any
+            )}&blockId=${post.id}`}
+            alt="cover image"
+            className="object-cover w-full h-full"
+            />
+      </div>
+      {/* <div className="px-4 pb-8 my-0 mx-auto max-w-3xl"> */}
       <div className={blogStyles.post}>
+        <TopicPaths paths={["✍️ Blog", post.Page]} />
+        {post.PageIcon}
         <h1>{post.Page || ''}</h1>
         {post.Date && (
           <div className="posted">Posted: {getDateStr(post.Date)}</div>
