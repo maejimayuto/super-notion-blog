@@ -3,6 +3,7 @@ export const getBlogLink = (slug: string) => {
 }
 
 export const getDateStr = (date: string | number | Date) => {
+  if (!date) return '--'
   return new Date(date).toLocaleString('en-US', {
     month: 'long',
     day: '2-digit',
