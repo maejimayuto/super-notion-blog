@@ -62,7 +62,6 @@ export async function getStaticProps({ params: { slug }, preview }) {
     }
   }
 
-
   return {
     props: {
       post,
