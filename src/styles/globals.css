@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+ul { @apply list-disc pl-7 pt-2; }
+ul { list-style: disc outside ;}
+ul ul {list-style: circle outside ;}
+ul ul ul { list-style: square outside; }
+ul ul ul ul {list-style: disc outside ;}
+ul ul ul ul ul {list-style: circle outside ;}
+ul ul ul ul ul ul {list-style: square outside ;}
+ol { @apply list-decimal pl-7 pt-2; }
+ol { list-style: decimal; }
+ol ol { list-style: lower-alpha; }
+ol ol ol { list-style: lower-roman; }
+ol ol ol ol { list-style: decimal; }
+ol ol ol ol ol { list-style: lower-alpha; }
+ol ol ol ol ol ol { list-style: lower-roman; }

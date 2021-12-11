@@ -232,12 +232,12 @@ const RenderPost = ({ post, redirect, preview }) => {
 
                   const createEl = (item) =>
                     React.createElement(
-                      components.li || 'ul',
+                      components.li,
                       { key: item.key },
                       item.children,
                       item.nested.length > 0
                         ? React.createElement(
-                            components.ul || 'ul',
+                            listTagName,
                             { key: item + 'sub-list' },
                             item.nested.map((nestedId) =>
                               createEl(listMap[nestedId])
