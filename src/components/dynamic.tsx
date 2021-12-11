@@ -11,6 +11,7 @@ export default {
   a: ExtLink,
 
   Code: dynamic(() => import('./code')),
+  Bookmark: dynamic(() => import('./bookmark')),
   Counter: dynamic(() => import('./counter')),
   Equation: dynamic(() => import('./equation')),
 }
