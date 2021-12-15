@@ -64,13 +64,6 @@
   border-bottom: none;
 }
 
-.postPreview h3,
-
-.post :global(h2),
-.post :global(h3) {
-  margin: 3rem 0 1.5rem 0;
-}
-
 .post :global(video),
 .post :global(img),
 .post :global(.asset-wrapper) {

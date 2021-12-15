@@ -173,7 +173,7 @@ const RenderPost = ({ post, redirect, preview }) => {
             paths={["✍️ Blog", post.PagePath]}
             className="mb-3"
           />
-          <h1 className="mb-8 text-4xl font-bold">{post.Page || ''}</h1>
+          <h1 className="pt-1 mt-0 mb-10 text-4xl font-bold">{post.Page || ''}</h1>
           <div className="grid grid-cols-4 gap-4 pt-1 pb-4 mb-4 text-sm text-fg-3 border-b">
             <div className="flex col-span-1">
               <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6"
