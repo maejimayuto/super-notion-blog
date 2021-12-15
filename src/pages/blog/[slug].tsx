@@ -97,6 +97,7 @@ const RenderPost = ({ post, redirect, preview }) => {
       isNested?: boolean
       nested: string[]
       children: React.ReactFragment
+      listTagName: string
     }
   } = {}
 
@@ -213,6 +214,7 @@ const RenderPost = ({ post, redirect, preview }) => {
             listMap[id] = {
               key: id,
               nested: [],
+              listTagName: listTagName,
               children: textBlock(properties.title, true, id),
             }
 
@@ -222,33 +224,42 @@ const RenderPost = ({ post, redirect, preview }) => {
             }
           }
 
-          if (listTagName && (isLast || !isList)) {
-            toRender.push(
-              React.createElement(
-                listTagName,
-                { key: listLastId! },
-                Object.keys(listMap).map((itemId) => {
-                  if (listMap[itemId].isNested) return null
-
-                  const createEl = (item) =>
-                    React.createElement(
-                      components.li || 'ul',
-                      { key: item.key },
-                      item.children,
-                      item.nested.length > 0
-                        ? React.createElement(
-                            components.ul || 'ul',
-                            { key: item + 'sub-list' },
-                            item.nested.map((nestedId) =>
-                              createEl(listMap[nestedId])
-                            )
-                          )
-                        : null
-                    )
-                  return createEl(listMap[itemId])
-                })
+          // TODO: I want to move into a separate file.
+          const createListElement = (item: any) => {
+            let children_tag = null
+            if (item.nested.length > 0) {
+              children_tag = React.createElement(
+                // TODO: #68 Here, the first 0 is specified, so lists on the same level will have the same type.
+                listMap[item.nested[0]].listTagName,
+                { key: item + 'sub-list' },
+                item.nested.map((nestedId) =>
+                  createListElement(listMap[nestedId])
+                )
               )
+            }
+            return React.createElement(
+              components.li,
+              { key: item.key },
+              item.children,
+              children_tag
             )
+          }
+
+          if (listTagName && (isLast || !isList)) {
+            // NOTE: Get the tag for the top-left list in the list
+            const top_tag = Object.keys(listMap).map((itemId) => {
+              return !listMap[itemId].isNested ? listMap[itemId].listTagName : ''
+            })[0]
+            const children_tag = Object.keys(listMap).map((itemId) => {
+                if (listMap[itemId].isNested) return null
+                return createListElement(listMap[itemId])
+              })
+            const ele = React.createElement(
+              top_tag,
+              { key: listLastId! },
+              children_tag
+            )
+            toRender.push(ele)
             listMap = {}
             listLastId = null
             listTagName = null
