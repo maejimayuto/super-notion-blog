@@ -270,7 +270,7 @@ const RenderPost = ({ post, redirect, preview }) => {
           const renderHeading = (Type: string | React.ComponentType) => {
             toRender.push(
               <Heading key={id}>
-                {/* TODO: I want to apply a css class for h1, h2... in the following line In the following lines, I want to apply a css class that matches the #79 */}
+                {/* TODO:  #79 I want the style applied to h1, h2, ... to be the style of the scope in [slug].tsx, not global. */}
                 <Type key={id}>{textBlock(properties.title, true, id)}</Type>
               </Heading>
             )
