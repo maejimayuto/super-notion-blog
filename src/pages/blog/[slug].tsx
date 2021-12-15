@@ -268,6 +268,7 @@ const RenderPost = ({ post, redirect, preview }) => {
           const renderHeading = (Type: string | React.ComponentType) => {
             toRender.push(
               <Heading key={id}>
+                {/* TODO: I want to apply a css class for h1, h2... in the following line In the following lines, I want to apply a css class that matches the #79 */}
                 <Type key={id}>{textBlock(properties.title, true, id)}</Type>
               </Heading>
             )
