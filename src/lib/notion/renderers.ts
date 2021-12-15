@@ -16,6 +16,8 @@ function applyTags(tags = [], children, noPTag = false, key) {
     }
     if (tagName === 'a') {
       props.href = tag[1]
+      // TODO: #81 Actually, instead of changing the style of a in globals.css,
+      // it's better to return the component that also manages the state of hover here.
     }
     if (tagName === 'e') {
       tagName = components.Equation
