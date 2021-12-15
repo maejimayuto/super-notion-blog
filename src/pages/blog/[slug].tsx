@@ -18,6 +18,7 @@ import blogStyles from '../../styles/blog.module.css'
 export async function getStaticProps({ params: { slug }, preview }) {
   // load the postsTable so that we can get the page's ID
   const postsTable = await getBlogIndex()
+  console.log("postsTable: ", JSON.stringify(postsTable, null, 2))
   // TODO: 本当は、 slug (ページのタイトル的なやつ) で API に検索クエリ的に投げられると良い
   // 現状は、全ての記事を取得し、メモリ上で同じ slug で記事を探し当てている
   const post = postsTable[slug]
@@ -62,6 +63,7 @@ export async function getStaticProps({ params: { slug }, preview }) {
     }
   }
 
+  console.log("post: ", JSON.stringify(post, null, 2))
   return {
     props: {
       post,
@@ -173,8 +175,8 @@ const RenderPost = ({ post, redirect, preview }) => {
             paths={["✍️ Blog", post.PagePath]}
             className="mb-3"
           />
-          <h1 className="mb-8 text-4xl font-bold">{post.Page || ''}</h1>
-          <div className="grid grid-cols-4 gap-4 pt-1 pb-4 mb-4 text-sm text-fg-3 border-b">
+          <h1 className="pt-1 mt-0 mb-8 text-4xl font-bold">{post.Page || ''}</h1>
+          <div className="grid grid-cols-4 gap-4 pt-3 pb-4 mb-4 text-sm text-fg-3 border-b">
             <div className="flex col-span-1">
               <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6"
                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -268,6 +270,7 @@ const RenderPost = ({ post, redirect, preview }) => {
           const renderHeading = (Type: string | React.ComponentType) => {
             toRender.push(
               <Heading key={id}>
+                {/* TODO: I want to apply a css class for h1, h2... in the following line In the following lines, I want to apply a css class that matches the #79 */}
                 <Type key={id}>{textBlock(properties.title, true, id)}</Type>
               </Heading>
             )

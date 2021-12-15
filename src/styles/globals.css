@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* #79  */
+h1 { @apply text-3xl mt-12 mb-8; }
+h2 { @apply text-2xl mt-8 mb-6; }
+h3 { @apply text-xl mt-6 mb-4; }
+h4 { @apply text-lg mt-4 mb-2; }
 ul { @apply list-disc pl-7; }
 ul { list-style: disc outside ;}
 ul ul {list-style: circle outside ;}
