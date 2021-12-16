@@ -42,10 +42,24 @@ export function textBlock(text = [], noPTag = false, mainKey) {
     }
     children.push(applyTags(textItem[1], textItem[0], noPTag, key))
   }
-  return React.createElement(
-    noPTag ? React.Fragment : components.p,
-    { key: mainKey },
-    ...children,
-    noPTag
-  )
+  if (noPTag) {
+    return React.createElement(
+      React.Fragment,
+      { key: mainKey },
+      ...children,
+      noPTag
+    )
+  } else {
+    return React.createElement(
+      'div',
+      // TODO: tailwind が適用できなかった
+      { style: {margin: '0.08rem 0', padding: '0.16rem 0.12rem'} },
+      React.createElement(
+        components.p,
+        { key: mainKey },
+        ...children,
+        noPTag
+      )
+    )
+  }
 }
