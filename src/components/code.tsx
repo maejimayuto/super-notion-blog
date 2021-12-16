@@ -24,7 +24,8 @@ const Code = ({ children, language = 'javascript' }) => {
         code {
           overflow: auto;
           display: block;
-          padding: 2.5rem 2.0rem;
+          padding: 2.1rem 1.9rem;
+          margin: 0.5rem 0;
           line-height: 1.5;
           background: rgb(247, 246, 243);
           font-size: 0.8rem;
