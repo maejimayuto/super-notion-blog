@@ -7,9 +7,22 @@ function applyTags(tags = [], children, noPTag = false, key) {
   for (const tag of tags) {
     const props: { [key: string]: any } = { key }
     let tagName = tag[0]
+    console.log('tag', tag)
+    console.log('props', props)
 
     if (noPTag && tagName === 'p') tagName = React.Fragment
-    if (tagName === 'c') tagName = 'code'
+    if (tagName === 'c') {
+      tagName = 'code'
+      props.style = {
+        padding: '0.18rem 0.35rem',
+        color: 'rgb(235, 87, 87)',  
+        backgroundColor: 'rgb(245, 242, 240)',
+        backgroundClip: 'border-box',
+        borderRadius: '0.25rem',
+        fontSize: '0.8rem',
+        lineHeight: '1.3rem',
+      }
+    }
     if (tagName === '_') {
       tagName = 'span'
       props.className = 'underline'
@@ -53,7 +66,7 @@ export function textBlock(text = [], noPTag = false, mainKey) {
     return React.createElement(
       'div',
       // TODO: tailwind が適用できなかった
-      { style: {margin: '0.08rem 0', padding: '0.16rem 0.12rem'} },
+      { style: { margin: '0.08rem 0', padding: '0.16rem 0.12rem' } },
       React.createElement(
         components.p,
         { key: mainKey },

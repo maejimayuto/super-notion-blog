@@ -5,6 +5,9 @@ module.exports = {
   theme: {
     fontFamily: {
       body: ['Noto Sans JP', 'Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'],
+      code: ['Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', 'monospace'],
+      // TODO: Notion's default font and VSCode's default font are Menlo, which I want to use, but Google fonts doesn't have it, so I gave up.
+      // code: ['Menlo', 'Monaco', 'Courier New', 'monospace'],
     },
     borderWidth: {
       DEFAULT: '1px',
