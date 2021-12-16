@@ -380,13 +380,13 @@ const RenderPost = ({ post, redirect, preview }) => {
               break
             }
             case 'header':
-              renderHeading('h1')
-              break
-            case 'sub_header':
               renderHeading('h2')
               break
-            case 'sub_sub_header':
+            case 'sub_header':
               renderHeading('h3')
+              break
+            case 'sub_sub_header':
+              renderHeading('h4')
               break
             case 'bookmark':
               const { link, title, description } = properties
