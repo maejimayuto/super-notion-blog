@@ -25,3 +25,5 @@ ol ol ol ol { list-style: decimal; }
 ol ol ol ol ol { list-style: lower-alpha; }
 ol ol ol ol ol ol { list-style: lower-roman; }
 li { @apply py-1.5; }
+
+blockquote { @apply border-l-3 border-fg my-2 px-4 py-0.5 italic ; }
