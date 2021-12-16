@@ -16,8 +16,8 @@ export default async function getPageData(pageId: string) {
       blocks = Object.assign(blocks, data.recordMap.block)
     }
     const blockArray = values(blocks)
-    const page_icon = blockArray[0].value.format.page_icon ? blockArray[0].value.format.page_icon : ''
-    const page_cover = getCoverUrl(blockArray[0].value.format.page_cover)
+    const page_icon = (blockArray[0].value.format && blockArray[0].value.format.page_icon) ? blockArray[0].value.format.page_icon : ''
+    const page_cover = blockArray[0].value.format ? getCoverUrl(blockArray[0].value.format.page_cover) : ''
     if (blockArray[0] && blockArray[0].value.content) {
       // remove table blocks
       blockArray.splice(0, 3)
