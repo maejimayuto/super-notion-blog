@@ -23,7 +23,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body className="font-body text-fg">
+        <body className="font-body leading-7 text-fg">
           <Main />
           <NextScript />
         </body>
