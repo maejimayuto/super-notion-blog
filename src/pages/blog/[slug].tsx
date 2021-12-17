@@ -363,15 +363,17 @@ const RenderPost = ({ post, redirect, preview }) => {
 
               toRender.push(
                 useWrapper ? (
-                  <div
-                    style={{
-                      paddingTop: `${Math.round(block_aspect_ratio * 100)}%`,
-                      position: 'relative',
-                    }}
-                    className="asset-wrapper"
-                    key={id}
-                  >
-                    {child}
+                  <div className="mt-1 mb-2">
+                    <div
+                      style={{
+                        paddingTop: `${Math.round(block_aspect_ratio * 100)}%`,
+                        position: 'relative',
+                      }}
+                      className="asset-wrapper"
+                      key={id}
+                    >
+                      {child}
+                    </div>
                   </div>
                 ) : (
                   child
