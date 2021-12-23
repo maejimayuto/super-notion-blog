@@ -50,20 +50,6 @@
   margin-right: 6px;
 }
 
-.noPosts {
-  text-align: center;
-}
-
-.postPreview {
-  max-width: 600px;
-  margin: 10px auto;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
-}
-
-.postPreview:last-child {
-  border-bottom: none;
-}
-
 .post :global(video),
 .post :global(img),
 .post :global(.asset-wrapper) {
