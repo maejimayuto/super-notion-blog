@@ -2,17 +2,14 @@ import Link from 'next/link'
 
 import CustomHead from '../../components/custom-head'
 import TopicPaths from '../../components/topic-path'
-import blogStyles from '../../styles/blog.module.css'
 
 import {
   getBlogLink,
   getDateStr,
   isPublished,
 } from '../../lib/blog-helpers'
-import { textBlock } from '../../lib/notion/renderers'
 import getBlogIndex from "../../lib/notion/getBlogIndex";
 
-// export async function getStaticProps(preview: any): Promise<{ props: { preview: any; posts: any[]; }; revalidate: number; }> {
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()
 
