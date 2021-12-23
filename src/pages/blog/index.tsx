@@ -34,7 +34,7 @@ export async function getStaticProps({ preview }) {
 const Index = ({ posts = [], preview }) => {
   return (
     <>
-      <CustomHead titlePre="Home" />
+      <CustomHead titlePre="Blog" />
       {/* TODO: この preview の意味がわからない */}
       {preview && (
         <div>
