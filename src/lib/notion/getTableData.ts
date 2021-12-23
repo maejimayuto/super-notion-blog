@@ -66,11 +66,8 @@ export async function getTableData(collectionBlock: any, isPosts = false) {
       row[schema[key].name] = val || null
     })
 
-    const page_icon = entry.value.format?.page_icon ? entry.value.format.page_icon : ''
-    const page_cover = getCoverUrl(entry.value.format?.page_cover)
-
-    row['PageIcon'] = page_icon
-    row['PageCoverUrl'] = page_cover
+    row['PageIcon'] = entry.value.format?.page_icon ? entry.value.format.page_icon : ''
+    row['PageCoverUrl'] = getCoverUrl(entry.value.format?.page_cover)
 
     // auto-generate slug from title
     row.Slug = normalizeSlug(row.Slug || slugger.slug(row.Page || ''))
