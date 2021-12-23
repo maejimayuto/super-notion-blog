@@ -11,7 +11,7 @@ const Home: NextPage = () => {
         サイトのタイトル
       </h1>
       <Link href="/blog" passHref>
-        <a className="text-blue-600">blog</a>
+        <a>blog</a>
       </Link>
     </>
   )
