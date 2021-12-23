@@ -1,7 +1,7 @@
 import { values } from './rpc'
 import Slugger from 'github-slugger'
 import queryCollection from './queryCollection'
-import { normalizeSlug } from '../blog-helpers'
+import { caleDateTimeWithTimeZone, getCoverUrl, normalizeSlug } from '../blog-helpers'
 
 export async function getTableData(collectionBlock: any, isPosts = false) {
   const slugger = new Slugger()
@@ -52,28 +52,7 @@ export async function getTableData(collectionBlock: any, isPosts = false) {
             val = page.value.properties.title[0][0]
             break
           case 'd': // date
-            // start_date: 2019-06-18
-            // start_time: 07:00
-            // time_zone: Europe/Berlin, America/Los_Angeles
-
-            if (!type[1].start_date) {
-              break
-            }
-            // initial with provided date
-            const providedDate = new Date(
-              type[1].start_date + ' ' + (type[1].start_time || '')
-            ).getTime()
-
-            // calculate offset from provided time zone
-            const timezoneOffset =
-              new Date(
-                new Date().toLocaleString('en-US', {
-                  timeZone: type[1].time_zone,
-                })
-              ).getTime() - new Date().getTime()
-
-            // initialize subtracting time zone offset
-            val = new Date(providedDate - timezoneOffset).getTime()
+            val = caleDateTimeWithTimeZone(type[1].start_date, type[1].start_time, type[1].time_zone)
             break
           default:
             console.error('unknown type', type[0], type)
@@ -86,6 +65,12 @@ export async function getTableData(collectionBlock: any, isPosts = false) {
       }
       row[schema[key].name] = val || null
     })
+
+    const page_icon = entry.value.format?.page_icon ? entry.value.format.page_icon : ''
+    const page_cover = getCoverUrl(entry.value.format?.page_cover)
+
+    row['PageIcon'] = page_icon
+    row['PageCoverUrl'] = page_cover
 
     // auto-generate slug from title
     row.Slug = normalizeSlug(row.Slug || slugger.slug(row.Page || ''))

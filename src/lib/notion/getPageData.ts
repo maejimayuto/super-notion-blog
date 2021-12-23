@@ -1,3 +1,4 @@
+import { getCoverUrl } from '../blog-helpers'
 import rpc, { values } from './rpc'
 
 export default async function getPageData(pageId: string) {
@@ -43,15 +44,4 @@ export function loadPageChunk({
     chunkNumber,
     verticalColumns,
   })
-}
-
-export function getCoverUrl(coverUrl: string) {
-  if (coverUrl === undefined) return ''
-  if (!coverUrl.indexOf('/images')) {
-    return "https://www.notion.so/image/https%3A%2F%2Fwww.notion.so" + encodeURIComponent(coverUrl)
-  } else if (!coverUrl.indexOf('http')) {
-    return coverUrl
-  } else {
-    return ''
-  }
 }
