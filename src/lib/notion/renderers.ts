@@ -7,8 +7,6 @@ function applyTags(tags = [], children, noPTag = false, key) {
   for (const tag of tags) {
     const props: { [key: string]: any } = { key }
     let tagName = tag[0]
-    console.log('tag', tag)
-    console.log('props', props)
 
     if (noPTag && tagName === 'p') tagName = React.Fragment
     if (tagName === 'c') {
