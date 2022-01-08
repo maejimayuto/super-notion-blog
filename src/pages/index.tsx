@@ -44,7 +44,7 @@ const Home: NextPage = () => {
               <Link key={product.url} href={product.url} passHref>
                 <a
                   target="_blank" rel="noopener noreferrer"
-                  className="font-normal text-fg hover:text-fg border-0"
+                  className="text-fg hover:text-fg border-0"
                 >
                   <div className="hover:bg-fg-0 rounded shadow-md">
                     <div className="relative my-0 mx-auto max-w-xl h-48">

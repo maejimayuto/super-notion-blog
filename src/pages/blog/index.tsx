@@ -65,7 +65,7 @@ const Index = ({ posts = [], preview }) => {
           {posts.map((post) => {
             return (
               <Link key={post.Slug} href="/blog/[slug]" as={getBlogLink(post.Slug)} passHref>
-                <a className="font-normal text-fg hover:text-fg border-0">
+                <a className="text-fg hover:text-fg border-0">
                   <div className="hover:bg-fg-0 rounded shadow-md">
                     {post.PageCoverUrl && (
                       <div className="relative my-0 mx-auto max-w-xl h-48">
