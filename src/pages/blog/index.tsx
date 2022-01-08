@@ -52,7 +52,7 @@ const Index = ({ posts = [], preview }) => {
         className="mt-5"
       />
         <h1 className="mt-4 text-4xl font-bold">Blog</h1>
-        <p>前島 悠人のブログです。 Web の技術のことや、スタートアップ、プロダクトの開発について書いていきます。</p>
+        <p>前島 悠人のブログです。スタートアップ、プロダクトの開発について書いていきます。</p>
         {posts.length === 0 && (
           <p className="text-center">🚧メンテナンス中🚧</p>
         )}
