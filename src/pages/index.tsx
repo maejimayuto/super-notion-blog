@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import CustomHead from '../components/custom-head'
+import ExtLink from '../components/ext-link';
 
 const products = [
   {
@@ -70,9 +71,17 @@ const Home: NextPage = () => {
           })}
         </div>
         <h2 className="text-xl font-bold">Blog</h2>
-        <Link href="/blog" passHref>
-          <a>記事一覧</a>
-        </Link>
+        <Link href="/blog" passHref><a>記事一覧</a></Link>
+        <h2 className="text-xl font-bold">SNS</h2>
+        <ExtLink href="https://twitter.com/maejimayuto"><a>Twitter</a></ExtLink>
+        <span> / </span>
+        <ExtLink href="https://facebook.com/maejimayuto"><a>FaceBook</a></ExtLink>
+        <span> / </span>
+        <ExtLink href="https://qiita.com/maejimayuto"><a>Qiita</a></ExtLink>
+        <span> / </span>
+        <ExtLink href="https://github.com/maejimayuto"><a>github</a></ExtLink>
+        <span> / </span>
+        <ExtLink href="mailto:maejimayuto@gmail.com"><a>Mail</a></ExtLink>
       </div>
     </>
   )
