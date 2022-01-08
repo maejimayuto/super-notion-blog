@@ -84,7 +84,7 @@ const Home: NextPage = () => {
         <span> / </span>
         <ExtLink href="https://qiita.com/maejimayuto"><a>Qiita</a></ExtLink>
         <span> / </span>
-        <ExtLink href="https://github.com/maejimayuto"><a>github</a></ExtLink>
+        <ExtLink href="https://github.com/maejimayuto"><a>GitHub</a></ExtLink>
         <span> / </span>
         <ExtLink href="mailto:maejimayuto@gmail.com"><a>Mail</a></ExtLink>
       </div>
