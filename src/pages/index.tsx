@@ -37,7 +37,7 @@ const Home: NextPage = () => {
         <h2 className="text-xl font-bold">Profile</h2>
         名古屋出身。名古屋大好き東京在住。93年生まれの Web エンジニア。
         たくさんプロダクトを作って、起業家王を目指している。
-        まだ物語は山賊に誘拐されているぐらいまでしか進んでいない。
+        物語はまだ山賊に誘拐されるぐらいまでしか進んでいない。
         <h2 className="text-xl font-bold">Products</h2>
         <div className="grid grid-cols-2 gap-4">
           {products.map((product) => {
