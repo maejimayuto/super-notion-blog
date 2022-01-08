@@ -71,7 +71,12 @@ const Home: NextPage = () => {
           })}
         </div>
         <h2 className="text-xl font-bold">Blog</h2>
-        <Link href="/blog" passHref><a>記事一覧</a></Link>
+        <Link href="/blog" passHref>
+          <a className="border-0">
+            <span className="text-fg-4">✍️</span>
+            <span className="text-fg-3 hover:text-fg-4 border-b border-fg-1 hover:border-fg-4">記事一覧</span>
+          </a>
+        </Link>
         <h2 className="text-xl font-bold">SNS</h2>
         <ExtLink href="https://twitter.com/maejimayuto"><a>Twitter</a></ExtLink>
         <span> / </span>
@@ -79,7 +84,7 @@ const Home: NextPage = () => {
         <span> / </span>
         <ExtLink href="https://qiita.com/maejimayuto"><a>Qiita</a></ExtLink>
         <span> / </span>
-        <ExtLink href="https://github.com/maejimayuto"><a>github</a></ExtLink>
+        <ExtLink href="https://github.com/maejimayuto"><a>GitHub</a></ExtLink>
         <span> / </span>
         <ExtLink href="mailto:maejimayuto@gmail.com"><a>Mail</a></ExtLink>
       </div>
