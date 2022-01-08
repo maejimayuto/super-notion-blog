@@ -52,7 +52,7 @@ const Index = ({ posts = [], preview }) => {
         className="mt-5"
       />
         <h1 className="mt-4 text-4xl font-bold">Blog</h1>
-        <p>前島 悠人のブログです。 Web の技術のことや、スタートアップ、プロダクトの開発について書いていきます。</p>
+        <p>前島 悠人のブログです。スタートアップ、プロダクトの開発について書いていきます。</p>
         {posts.length === 0 && (
           <p className="text-center">🚧メンテナンス中🚧</p>
         )}
@@ -65,7 +65,7 @@ const Index = ({ posts = [], preview }) => {
           {posts.map((post) => {
             return (
               <Link key={post.Slug} href="/blog/[slug]" as={getBlogLink(post.Slug)} passHref>
-                <a className="font-normal text-fg hover:text-fg border-0">
+                <a className="text-fg hover:text-fg border-0">
                   <div className="hover:bg-fg-0 rounded shadow-md">
                     {post.PageCoverUrl && (
                       <div className="relative my-0 mx-auto max-w-xl h-48">
