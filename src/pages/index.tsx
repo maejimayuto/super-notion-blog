@@ -54,7 +54,7 @@ const Home: NextPage = () => {
                         alt="carpe"
                         layout="fill"
                         objectFit="cover"
-                        objectPosition="right top;"
+                        objectPosition="right top"
                         className="rounded-t"
                       />
                     </div>
