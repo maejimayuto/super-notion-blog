@@ -1,3 +1,4 @@
+import { getCoverUrl } from '../blog-helpers'
 import rpc, { values } from './rpc'
 
 export default async function getPageData(pageId: string) {
@@ -6,9 +7,9 @@ export default async function getPageData(pageId: string) {
   const maximumChunckNumer = 100
 
   try {
-    var chunkNumber = 0
-    var data = await loadPageChunk({ pageId, chunkNumber })
-    var blocks = data.recordMap.block
+    let chunkNumber = 0
+    let data = await loadPageChunk({ pageId, chunkNumber })
+    let blocks = data.recordMap.block
 
     while (data.cursor.stack.length !== 0 && chunkNumber < maximumChunckNumer) {
       chunkNumber = chunkNumber + 1
@@ -16,14 +17,16 @@ export default async function getPageData(pageId: string) {
       blocks = Object.assign(blocks, data.recordMap.block)
     }
     const blockArray = values(blocks)
+    const page_icon = blockArray[0].value.format?.page_icon ? blockArray[0].value.format.page_icon : ''
+    const page_cover = getCoverUrl(blockArray[0].value.format?.page_cover)
     if (blockArray[0] && blockArray[0].value.content) {
       // remove table blocks
       blockArray.splice(0, 3)
     }
-    return { blocks: blockArray }
+    return { blocks: blockArray, PageIcon: page_icon, PageCoverUrl: page_cover }
   } catch (err) {
     console.error(`Failed to load pageData for ${pageId}`, err)
-    return { blocks: [] }
+    return { blocks: [], PageIcon: '', PageCoverUrl: '' }
   }
 }
 

@@ -1,16 +1,31 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+/* #79  */
+h1 { @apply text-3xl mt-12 mb-4; }
+h2 { @apply text-2xl font-semibold mt-9 mb-3; }
+h3 { @apply text-xl font-bold mt-6 mb-2; }
+h4 { @apply text-lg font-bold mt-4 mb-1; }
 
-* {
-  box-sizing: border-box;
-}
+a { @apply border-b border-fg-1 text-fg-3 hover:border-fg-4 hover:text-fg-4; }
+
+ul { @apply list-disc pl-7; }
+ul { list-style: disc outside ;}
+ul ul {list-style: circle outside ;}
+ul ul ul { list-style: square outside; }
+ul ul ul ul {list-style: disc outside ;}
+ul ul ul ul ul {list-style: circle outside ;}
+ul ul ul ul ul ul {list-style: square outside ;}
+ol { @apply list-decimal pl-7; }
+ol { list-style: decimal; }
+ol ol { list-style: lower-alpha; }
+ol ol ol { list-style: lower-roman; }
+ol ol ol ol { list-style: decimal; }
+ol ol ol ol ol { list-style: lower-alpha; }
+ol ol ol ol ol ol { list-style: lower-roman; }
+li { @apply pt-1.5; }
+
+blockquote { @apply border-l-3 border-fg my-2 px-4 py-0.5 italic text-fg-4 ; }
+
+code { @apply font-code; }

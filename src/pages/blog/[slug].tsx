@@ -1,21 +1,25 @@
 import Link from 'next/link'
-import fetch from 'node-fetch'
 import { useRouter } from 'next/router'
-import Header from '../../components/header'
-import Heading from '../../components/heading'
-import components from '../../components/dynamic'
+import fetch from 'node-fetch'
 import ReactJSXParser from '@zeit/react-jsx-parser'
-import blogStyles from '../../styles/blog.module.css'
-import { textBlock } from '../../lib/notion/renderers'
-import getPageData from '../../lib/notion/getPageData'
 import React, { CSSProperties, useEffect } from 'react'
+
+import components from '../../components/dynamic'
+import CustomHead from '../../components/custom-head'
+import TopicPaths from '../../components/topic-path'
+import Heading from '../../components/heading'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
+import getPageData from '../../lib/notion/getPageData'
 import { getBlogLink, getDateStr } from '../../lib/blog-helpers'
+import { textBlock } from '../../lib/notion/renderers'
+import blogStyles from '../../styles/blog.module.css'
 
 // Get the data for each blog post
 export async function getStaticProps({ params: { slug }, preview }) {
   // load the postsTable so that we can get the page's ID
   const postsTable = await getBlogIndex()
+  // TODO: 本当は、 slug (ページのタイトル的なやつ) で API に検索クエリ的に投げられると良い
+  // 現状は、全ての記事を取得し、メモリ上で同じ slug で記事を探し当てている
   const post = postsTable[slug]
 
   // if we can't find the post or if it is unpublished and
@@ -32,6 +36,9 @@ export async function getStaticProps({ params: { slug }, preview }) {
   }
   const postData = await getPageData(post.id)
   post.content = postData.blocks
+  post.PageIcon = postData.PageIcon
+  post.PagePath = postData.PageIcon ? post.PageIcon + ' ' + post.Page : post.Page
+  post.PageCoverUrl = postData.PageCoverUrl
 
   for (let i = 0; i < postData.blocks.length; i++) {
     const { value } = postData.blocks[i]
@@ -54,7 +61,6 @@ export async function getStaticProps({ params: { slug }, preview }) {
       }
     }
   }
-
 
   return {
     props: {
@@ -91,6 +97,7 @@ const RenderPost = ({ post, redirect, preview }) => {
       isNested?: boolean
       nested: string[]
       children: React.ReactFragment
+      listTagName: string
     }
   } = {}
 
@@ -135,7 +142,7 @@ const RenderPost = ({ post, redirect, preview }) => {
 
   return (
     <>
-      <Header titlePre={post.Page} />
+      <CustomHead titlePre={post.PagePath} />
       {preview && (
         <div className={blogStyles.previewAlertContainer}>
           <div className={blogStyles.previewAlert}>
@@ -147,13 +154,47 @@ const RenderPost = ({ post, redirect, preview }) => {
           </div>
         </div>
       )}
+      {post.PageCoverUrl && (
+        <div className="relative my-0 mx-auto max-w-3xl h-72">
+        {/* TODO: use nextjs Image tag #54*/}
+          <img
+            src={`/api/asset?assetUrl=${encodeURIComponent(
+              post.PageCoverUrl as any
+              )}&blockId=${post.id}`}
+            alt="cover image"
+            className="object-cover w-full h-full"
+          />
+        </div>
+      )}
+      {/* <div className="px-4 pb-8 my-0 mx-auto max-w-3xl"> */}
       <div className={blogStyles.post}>
-        <h1>{post.Page || ''}</h1>
-        {post.Date && (
-          <div className="posted">Posted: {getDateStr(post.Date)}</div>
-        )}
-
-        <hr />
+        <section>
+          <TopicPaths
+            paths={["✍️ Blog", post.PagePath]}
+            className="mb-3"
+          />
+          <h1 className="pt-1 mt-0 mb-8 text-4xl font-bold">{post.Page || ''}</h1>
+          <div className="grid grid-cols-4 gap-4 pt-3 pb-4 mb-4 text-sm text-fg-3 border-b">
+            <div className="flex col-span-1">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span className="ml-1">Created</span>
+            </div>
+            <div className="col-span-3">{getDateStr(post.Date)}</div>
+            <div className="flex col-span-1">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+              </svg>
+              <span className="ml-1">Tag</span>
+              </div>
+            <div className="col-span-3">{post.Tag}</div>
+          </div>
+        </section>
 
         {(!post.content || post.content.length === 0) && (
           <p>This post has no content</p>
@@ -173,6 +214,7 @@ const RenderPost = ({ post, redirect, preview }) => {
             listMap[id] = {
               key: id,
               nested: [],
+              listTagName: listTagName,
               children: textBlock(properties.title, true, id),
             }
 
@@ -182,33 +224,42 @@ const RenderPost = ({ post, redirect, preview }) => {
             }
           }
 
-          if (listTagName && (isLast || !isList)) {
-            toRender.push(
-              React.createElement(
-                listTagName,
-                { key: listLastId! },
-                Object.keys(listMap).map((itemId) => {
-                  if (listMap[itemId].isNested) return null
-
-                  const createEl = (item) =>
-                    React.createElement(
-                      components.li || 'ul',
-                      { key: item.key },
-                      item.children,
-                      item.nested.length > 0
-                        ? React.createElement(
-                            components.ul || 'ul',
-                            { key: item + 'sub-list' },
-                            item.nested.map((nestedId) =>
-                              createEl(listMap[nestedId])
-                            )
-                          )
-                        : null
-                    )
-                  return createEl(listMap[itemId])
-                })
+          // TODO: I want to move into a separate file.
+          const createListElement = (item: any) => {
+            let children_tag = null
+            if (item.nested.length > 0) {
+              children_tag = React.createElement(
+                // TODO: #68 Here, the first 0 is specified, so lists on the same level will have the same type.
+                listMap[item.nested[0]].listTagName,
+                { key: item + 'sub-list' },
+                item.nested.map((nestedId) =>
+                  createListElement(listMap[nestedId])
+                )
               )
+            }
+            return React.createElement(
+              components.li,
+              { key: item.key },
+              item.children,
+              children_tag
             )
+          }
+
+          if (listTagName && (isLast || !isList)) {
+            // NOTE: Get the tag for the top-left list in the list
+            const top_tag = Object.keys(listMap).map((itemId) => {
+              return !listMap[itemId].isNested ? listMap[itemId].listTagName : ''
+            })[0]
+            const children_tag = Object.keys(listMap).map((itemId) => {
+                if (listMap[itemId].isNested) return null
+                return createListElement(listMap[itemId])
+              })
+            const ele = React.createElement(
+              top_tag,
+              { key: listLastId! },
+              children_tag
+            )
+            toRender.push(ele)
             listMap = {}
             listLastId = null
             listTagName = null
@@ -217,59 +268,15 @@ const RenderPost = ({ post, redirect, preview }) => {
           const renderHeading = (Type: string | React.ComponentType) => {
             toRender.push(
               <Heading key={id}>
+                {/* TODO:  #79 I want the style applied to h1, h2, ... to be the style of the scope in [slug].tsx, not global. */}
                 <Type key={id}>{textBlock(properties.title, true, id)}</Type>
               </Heading>
             )
           }
 
           const renderBookmark = ({ link, title, description, format }) => {
-            const { bookmark_icon: icon, bookmark_cover: cover } = format
             toRender.push(
-              <div className={blogStyles.bookmark}>
-                <div>
-                  <div style={{ display: 'flex' }}>
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={blogStyles.bookmarkContentsWrapper}
-                      href={link}
-                    >
-                      <div
-                        role="button"
-                        className={blogStyles.bookmarkContents}
-                      >
-                        <div className={blogStyles.bookmarkInfo}>
-                          <div className={blogStyles.bookmarkTitle}>
-                            {title}
-                          </div>
-                          <div className={blogStyles.bookmarkDescription}>
-                            {description}
-                          </div>
-                          <div className={blogStyles.bookmarkLinkWrapper}>
-                            <img
-                              src={icon}
-                              className={blogStyles.bookmarkLinkIcon}
-                            />
-                            <div className={blogStyles.bookmarkLink}>
-                              {link}
-                            </div>
-                          </div>
-                        </div>
-                        <div className={blogStyles.bookmarkCoverWrapper1}>
-                          <div className={blogStyles.bookmarkCoverWrapper2}>
-                            <div className={blogStyles.bookmarkCoverWrapper3}>
-                              <img
-                                src={cover}
-                                className={blogStyles.bookmarkCover}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
+              <components.Bookmark link={link} title={title} description={description} format={format} />
             )
           }
 
@@ -354,15 +361,17 @@ const RenderPost = ({ post, redirect, preview }) => {
 
               toRender.push(
                 useWrapper ? (
-                  <div
-                    style={{
-                      paddingTop: `${Math.round(block_aspect_ratio * 100)}%`,
-                      position: 'relative',
-                    }}
-                    className="asset-wrapper"
-                    key={id}
-                  >
-                    {child}
+                  <div className="mt-1 mb-2">
+                    <div
+                      style={{
+                        paddingTop: `${Math.round(block_aspect_ratio * 100)}%`,
+                        position: 'relative',
+                      }}
+                      className="asset-wrapper"
+                      key={id}
+                    >
+                      {child}
+                    </div>
                   </div>
                 ) : (
                   child
@@ -371,13 +380,13 @@ const RenderPost = ({ post, redirect, preview }) => {
               break
             }
             case 'header':
-              renderHeading('h1')
-              break
-            case 'sub_header':
               renderHeading('h2')
               break
-            case 'sub_sub_header':
+            case 'sub_header':
               renderHeading('h3')
+              break
+            case 'sub_sub_header':
+              renderHeading('h4')
               break
             case 'bookmark':
               const { link, title, description } = properties

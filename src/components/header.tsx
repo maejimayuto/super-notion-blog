@@ -1,16 +1,23 @@
-import Head from 'next/head'
-import styles from '../styles/header.module.css'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const Header = ({ titlePre = '' }) => {
   return (
-    <header className={styles.header}>
-      <Head>
-        <title>前島 悠人{titlePre ? ` | ${titlePre}` : ''}</title>
-        <meta name="description" content="とっても自由な Web エンジニアがプロダクト開発でどこまでいけるかの挑戦を見守るサイトです。" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      前島 悠人
-    </header>
+    <div className="flex sticky top-0 z-50 items-center py-1 px-4 h-11 text-sm bg-white shadow-sm md:shadow-none">
+      <Link href="/" passHref>
+        <a className="flex items-center py-1 px-1 text-fg hover:text-fg hover:bg-fg-0 rounded border-0">
+          <Image
+            src="/images/maejima.jpg"
+            height={20}
+            width={20}
+            alt="ヘッダー画像"
+          />
+          <div className="ml-1">
+            前島 悠人
+          </div>
+        </a>
+      </Link>
+    </div>
   )
 }
 

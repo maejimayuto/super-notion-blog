@@ -24,11 +24,12 @@ const Code = ({ children, language = 'javascript' }) => {
         code {
           overflow: auto;
           display: block;
-          padding: 0.8rem;
+          padding: 2.1rem 1.9rem;
+          margin: 0.5rem 0;
           line-height: 1.5;
-          background: #f5f5f5;
-          font-size: 0.75rem;
-          border-radius: var(--radius);
+          background: rgb(247, 246, 243);
+          font-size: 0.8rem;
+          border-radius: 0.25rem;
         }
       `}</style>
     </>
