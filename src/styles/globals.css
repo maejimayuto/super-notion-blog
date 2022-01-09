@@ -4,9 +4,9 @@
 
 /* #79  */
 h1 { @apply text-3xl mt-12 mb-4; }
-h2 { @apply text-2xl mt-9 mb-3; }
-h3 { @apply text-xl mt-6 mb-2; }
-h4 { @apply text-lg mt-4 mb-1; }
+h2 { @apply text-2xl font-semibold mt-9 mb-3; }
+h3 { @apply text-xl font-bold mt-6 mb-2; }
+h4 { @apply text-lg font-bold mt-4 mb-1; }
 
 a { @apply border-b border-fg-1 text-fg-3 hover:border-fg-4 hover:text-fg-4; }
 
