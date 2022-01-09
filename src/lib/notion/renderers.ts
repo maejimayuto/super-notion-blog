@@ -64,7 +64,7 @@ export function textBlock(text = [], noPTag = false, mainKey) {
     return React.createElement(
       'div',
       // TODO: tailwind が適用できなかった
-      { style: { margin: '0.08rem 0', padding: '0.16rem 0.12rem' } },
+      { style: { margin: '0.08rem 0', padding: '0.16rem 0.12rem', whiteSpace: 'pre-line' } },
       React.createElement(
         components.p,
         { key: mainKey },
