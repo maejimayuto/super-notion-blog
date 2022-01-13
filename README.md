@@ -1,34 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Super Notion Blog
+This is a project that allows Notion to be published externally on its own domain.  
+Next.js on Vercel + Notion private API  
+**Demo**: https://maejimayuto.com/blog
 
 ## Getting Started
+First, follow this [getting started guide](https://maejimayuto.com/blog/authentication-notion-private-api-en) to get a `BLOG_INDEX_ID` and a `NOTION_TOKEN`, then add them to a .env file.
 
-First, run the development server:
+``` bash
+BLOG_INDEX_ID=
+NOTION_TOKEN=
+```
 
-```bash
-npm run dev
-# or
+Install dependencies
+
+``` bash
+yarn
+```
+
+Start the server with
+
+``` bash
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Deploy to Vercel
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmaejimayuto%2Fsuper-notion-blog&env=BLOG_INDEX_ID,NOTION_TOKEN&envDescription=BLOG_INDEX_ID%20and%20NOTION_TOKEN%20are%20required%20to%20retrieve%20information%20from%20Notion%20private%20API&envLink=https%3A%2F%2Fmaejimayuto.com%2Fblog%2Fauthentication-notion-private-api-en&project-name=super-notion-blog&repo-name=super-notion-blog&demo-title=Super%20Notion%20Blog&demo-description=You%20can%20publish%20Notion%20externally%20on%20your%20own%20domain.&demo-url=https%3A%2F%2Fmaejimayuto.com%2Fblog)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+## How to publish your own blog
+There are two simple steps to follow. 1.
 
-To learn more about Next.js, take a look at the following resources:
+1. Customize it in your own way
+2. Deploy to Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+In the future, I would like to eliminate the step 1 and display the information in Notion as it is on all pages.
+Currently, there are some pages and site names that need to be changed in order to use it for yourself.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Please refer to the following page for detailed instructions.
 
-## Deploy on Vercel
+[前島 悠人 \| How to publish your blog on Super Notion Blog](https://maejimayuto.com/blog/publish-super-notion-blog-en)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If you have any questions, please feel free to contact me and I will help you!
+[@maejimayuto](https://twitter.com/maejimayuto)
