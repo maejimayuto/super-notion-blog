@@ -1,6 +1,6 @@
 # Super Notion Blog
 This is a project that allows Notion to be published externally on its own domain.  
-Next.js on Vercel + Notion private API  
+[Next.js](https://nextjs.org/) on [Vercel](https://vercel.com/) + Notion private API  
 **Demo**: https://maejimayuto.com/blog
 
 ## Getting Started
@@ -31,7 +31,7 @@ Open http://localhost:3000 with your browser to see the result.
 
 
 ## How to publish your own blog
-There are two simple steps to follow. 1.
+There are two simple steps to follow.
 
 1. Customize it in your own way
 2. Deploy to Vercel
@@ -41,7 +41,7 @@ Currently, there are some pages and site names that need to be changed in order 
 
 Please refer to the following page for detailed instructions.
 
-[前島 悠人 \| How to publish your blog on Super Notion Blog](https://maejimayuto.com/blog/publish-super-notion-blog-en)
+[maejimayuto \| How to publish your blog on Super Notion Blog](https://maejimayuto.com/blog/publish-super-notion-blog-en)
 
 If you have any questions, please feel free to contact me and I will help you!
 [@maejimayuto](https://twitter.com/maejimayuto)
