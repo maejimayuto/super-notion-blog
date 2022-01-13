@@ -17,6 +17,12 @@ const products = [
     "image": "/images/cat-in-slack.png",
     "title": "猫の宅急便",
     "description": "Slack のチャンネルに猫の画像をお届けするアプリ"
+  },
+  {
+    "url": "https://github.com/maejimayuto/super-notion-blog",
+    "image": "/images/super-notion-blog.png",
+    "title": "super.so みたいなことができる OSS",
+    "description": "Notion と Next.js でブログが簡単に作れちゃう OSS"
   }
 ];
 
