@@ -1,4 +1,7 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
+import { GA_TRACKING_ID } from '../lib/gtag'
+const LANG = 'ja';
+
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -8,8 +11,24 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang={LANG}>
         <Head>
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+            }}
+          />
           <meta name="description" content="とっても自由な Web エンジニアがプロダクト開発でどこまでいけるかの挑戦を見守るサイトです。" />
           <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
