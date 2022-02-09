@@ -1,7 +1,7 @@
 # Super Notion Blog
 This is a project that allows Notion to be published externally on its own domain.  
 [Next.js](https://nextjs.org/) on [Vercel](https://vercel.com/) + Notion private API  
-**Demo**: https://maejimayuto.com/blog
+**Demo**: [https://maejimayuto.com/blog](https://maejimayuto.com/blog)
 
 ## Getting Started
 First, follow this [getting started guide](https://maejimayuto.com/blog/authentication-notion-private-api-en) to get a `BLOG_INDEX_ID` and a `NOTION_TOKEN`, then add them to a .env file.
@@ -23,7 +23,7 @@ Start the server with
 yarn dev
 ```
 
-Open http://localhost:3000 with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Deploy to Vercel
 
