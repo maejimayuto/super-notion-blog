@@ -25,5 +25,5 @@ module.exports = {
   BLOG_INDEX_ID,
   API_ENDPOINT,
   BLOG_INDEX_CACHE,
-  normalizeId,
+  normalizeId
 }
