@@ -14,6 +14,7 @@
     "github-slugger": "^1.4.0",
     "katex": "^0.15.2",
     "next": "12.1.4",
+    "node-fetch": "^3.2.3",
     "prismjs": "^1.27.0",
     "react": "18.0.0",
     "react-dom": "18.0.0"
