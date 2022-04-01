@@ -86,7 +86,7 @@ const Home: NextPage = () => {
         <h2 className="text-xl font-bold">SNS</h2>
         <ExtLink href="https://twitter.com/maejimayuto"><a>Twitter</a></ExtLink>
         <span> / </span>
-        <ExtLink href="https://facebook.com/maejimayuto"><a>FaceBook</a></ExtLink>
+        <ExtLink href="https://facebook.com/maejimayuto"><a>Facebook</a></ExtLink>
         <span> / </span>
         <ExtLink href="https://qiita.com/maejimayuto"><a>Qiita</a></ExtLink>
         <span> / </span>
