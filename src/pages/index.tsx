@@ -41,9 +41,9 @@ const Home: NextPage = () => {
       <div className="px-4 pb-8 my-0 mx-auto max-w-3xl">
         <h1 className="mt-4 text-4xl font-bold">前島 悠人</h1>
         <h2 className="text-xl font-bold">Profile</h2>
-        名古屋出身。名古屋大好き東京在住。93年生まれの Web エンジニア。
-        たくさんプロダクトを作って、起業家王を目指している。
-        物語はまだ山賊に誘拐されるぐらいまでしか進んでいない。
+        1993年生まれ、名古屋出身、東京渋谷区在住、Web エンジニア
+        Web アプリの受託開発の会社を2年ちょっとやっていました。
+        マネジメントから実装まで幅広くなんでもやるマンです。今後は、経営や0からのプロダクト開発に人生を捧げていきます！
         <h2 className="text-xl font-bold">Products</h2>
         <div className="grid grid-cols-2 gap-4">
           {products.map((product) => {
